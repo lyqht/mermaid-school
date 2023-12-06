@@ -16,7 +16,37 @@
   align-items: center;
 }
 
-.editorContainer {
+.workArea {
   position: relative;
   flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.editorContainer {
+  flex: 1;
+}
+
+.mermaidContainer {
+  flex: 1;
+  padding: 4px;
+}
+
+.validChip {
+  background: #abcbca;
+  border-radius: 8px;
+  padding: 4px;
+  font-size: small;
+}
+
+.invalidChip {
+  background: lightcoral;
+  border-radius: 8px;
+  padding: 4px;
+  font-size: small;
+}
+
+.chipContainer {
+  display: flex;
+  justify-content: flex-end;
 }
