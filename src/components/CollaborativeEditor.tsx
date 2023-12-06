@@ -120,7 +120,9 @@ export function CollaborativeEditor() {
     <div className={styles.container}>
       {provider ? <Cursors yProvider={provider} /> : null}
       <div className={styles.editorHeader}>
-        <div>{editorRef ? <Toolbar editor={editorRef} /> : null}</div>
+        <div>{editorRef ? <Toolbar editor={editorRef} onCopy={() => {
+          navigator.clipboard.writeText(editorRef.getValue());
+        }} /> : null}</div>
         <Avatars />
       </div>
       <div className={styles.workArea}>

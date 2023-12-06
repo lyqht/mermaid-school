@@ -1,11 +1,13 @@
+import { SVGProps } from "react";
 import styles from "./Toolbar.module.css";
 import { editor } from "monaco-editor";
 
 type Props = {
   editor: editor.IStandaloneCodeEditor;
+  onCopy: () => void;
 };
 
-export function Toolbar({ editor }: Props) {
+export function Toolbar({ editor, onCopy }: Props) {
   return (
     <div className={styles.toolbar}>
       <button
@@ -21,6 +23,13 @@ export function Toolbar({ editor }: Props) {
         aria-label="redo"
       >
         <RedoIcon />
+      </button>
+      <button
+        className={styles.button}
+        onClick={onCopy}
+        aria-label="redo"
+      >
+        <CopyIcon />
       </button>
     </div>
   );
@@ -80,6 +89,23 @@ export function RedoIcon() {
         strokeLinejoin="round"
         vectorEffect="non-scaling-stroke"
       />
+    </svg>
+  );
+}
+
+export function CopyIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M9 18q-.825 0-1.412-.587T7 16V4q0-.825.588-1.412T9 2h9q.825 0 1.413.588T20 4v12q0 .825-.587 1.413T18 18H9Zm0-2h9V4H9v12Zm-4 6q-.825 0-1.412-.587T3 20V6h2v14h11v2H5Zm4-6V4v12Z"
+      ></path>
     </svg>
   );
 }
