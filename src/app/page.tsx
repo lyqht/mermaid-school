@@ -1,12 +1,9 @@
-import { Room } from "@/app/Room";
-import { CollaborativeEditor } from "@/components/CollaborativeEditor";
+import { CollaborativeEditors } from "@/components/CollaborativeEditors";
 
 export default function Home() {
   return (
     <main>
-      <Room>
-        <CollaborativeEditor />
-      </Room>
+      <CollaborativeEditors />
     </main>
   );
 }

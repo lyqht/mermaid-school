@@ -6,12 +6,10 @@ import { useSearchParams } from "next/navigation";
 import { ClientSideSuspense } from "@liveblocks/react";
 import { Loading } from "@/components/Loading";
 
-export function Room({ children }: { children: ReactNode }) {
-  const roomId = useOverrideRoomId("nextjs-yjs-monaco");
-
+export function Room({ children, roomId }: { children: ReactNode, roomId?: string }) {
   return (
     <RoomProvider
-      id={roomId}
+      id={roomId ?? useOverrideRoomId("nextjs-yjs-monaco")}
       initialPresence={{
         cursor: null,
       }}

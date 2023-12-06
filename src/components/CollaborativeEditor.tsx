@@ -97,12 +97,12 @@ export function CollaborativeEditor() {
   };
 
   const resetMermaid = () => {
-    document.querySelectorAll(".mermaid").forEach((el) => {
+    document.querySelectorAll(`.mermaid${room.id}`).forEach((el) => {
       el.removeAttribute("data-processed");
     });
     mermaid.initialize({ startOnLoad: false });
     if (isMermaidSyntaxValid) {
-      mermaid.run().then(() => {
+      mermaid.run({querySelector: `.mermaid${room.id}`}).then(() => {
         console.debug("Rendering mermaid diagram");
       });
     }
@@ -156,7 +156,7 @@ export function CollaborativeEditor() {
           </div>
 
           <div className={styles.mermaidDiagramContainer}>
-            <pre className="mermaid">{mermaidText}</pre>
+            <pre className={`mermaid${room.id}`}>{mermaidText}</pre>
           </div>
         </div>
       </div>

@@ -30,6 +30,7 @@
 .mermaidContainer {
   flex: 1;
   padding: 4px;
+  overflow: auto;
 }
 
 .validChip {
