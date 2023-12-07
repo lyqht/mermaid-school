@@ -1,95 +1,50 @@
-<p align="center">
-  <a href="https://liveblocks.io#gh-light-mode-only">
-    <img src="https://raw.githubusercontent.com/liveblocks/liveblocks/main/.github/assets/header-light.svg" alt="Liveblocks" />
-  </a>
-  <a href="https://liveblocks.io#gh-dark-mode-only">
-    <img src="https://raw.githubusercontent.com/liveblocks/liveblocks/main/.github/assets/header-dark.svg" alt="Liveblocks" />
-  </a>
-</p>
+# Mermaid School
 
-# Collaborative Code Editor (Monaco)
+Welcome fishies! With this app, you will learn to dive into the ocean of diagrams with Mermaid. Swim alongside fellow learners and navigate the currents of diagramming together! 🌊
 
-<p>
-  <a href="https://liveblocks.io/examples/collaborative-text-editor/nextjs-yjs-monaco/preview">
-    <img src="https://img.shields.io/badge/live%20preview-message?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE2Ljg0OSA0Ljc1SDBsNC44NDggNS4wNzV2Ny4wMDhsMTItMTIuMDgzWk03LjE1IDE5LjI1SDI0bC00Ljg0OS01LjA3NVY3LjE2N2wtMTIgMTIuMDgzWiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==&color=333" alt="Live Preview" />
-  </a>
-  <a href="https://codesandbox.io/s/github/liveblocks/liveblocks/tree/main/examples/nextjs-yjs-monaco">
-    <img src="https://img.shields.io/badge/open%20in%20codesandbox-message?style=flat&logo=codesandbox&color=333&logoColor=fff" alt="Open in CodeSandbox" />
-  </a>
-  <img src="https://img.shields.io/badge/react-message?style=flat&logo=react&color=0bd&logoColor=fff" alt="React" />
-  <img src="https://img.shields.io/badge/next.js-message?style=flat&logo=next.js&color=07f&logoColor=fff" alt="Next.js" />
-  <img src="https://img.shields.io/badge/yjs-message?style=flat&color=0bd" alt="Yjs" />
-  <img src="https://img.shields.io/badge/monaco-message?style=flat&color=627" alt="Monaco" />
-</p>
+<details>
 
-This example shows how to build a collaborative code editor with
-[Liveblocks](https://liveblocks.io), [Yjs](https://docs.yjs.dev),
-[Monaco](https://microsoft.github.io/monaco-editor/), and
-[Next.js](https://nextjs.org/).
+<summary>What is Mermaid?</summary>
 
-As users edit the code, changes will be automatically persisted and
-synced—allowing for collaborative code editing experience. Users will also be
-able to see who else is currently online and each other’s cursors.
+If you don't know already, here's an official definition from [MermaidJS](https://mermaid.js.org/)
 
-<img src="https://raw.githubusercontent.com/liveblocks/liveblocks/main/.github/assets/examples/code-editor.png" width="536" alt="Collaborative Code Editor" />
-
-## Getting started
-
-Run the following command to try this example locally:
-
-```bash
-npx create-liveblocks-app@latest --example nextjs-yjs-monaco --api-key
-```
-
-This will download the example and ask permission to open your browser, enabling
-you to automatically get your API key from your
-[liveblocks.io](https://liveblocks.io) account.
-
-### Manual setup
-
-<details><summary>Read more</summary>
-
-<p></p>
-
-Alternatively, you can set up your project manually:
-
-- Install all dependencies with `npm install`
-- Create an account on [liveblocks.io](https://liveblocks.io/dashboard)
-- Copy your **secret** key from the
-  [dashboard](https://liveblocks.io/dashboard/apikeys)
-- Create an `.env.local` file and add your **secret** key as the
-  `LIVEBLOCKS_SECRET_KEY` environment variable
-- Run `npm run dev` and go to [http://localhost:3000](http://localhost:3000)
+> Mermaid is a JavaScript based diagramming and charting tool that renders Markdown-inspired text definitions to create and modify diagrams dynamically.
 
 </details>
 
-### Deploy on Vercel
+## Here's a screenshot of how it will be like
 
-<details><summary>Read more</summary>
+![](screenshots/preview.png)
 
-<p></p>
+## 🛠️ Tech Stack
 
-To both deploy on [Vercel](https://vercel.com), and run the example locally, use
-the following command:
+- **Fullstack**: NextJS
+- **Realtime Collaboration**: Liveblocks
+- **Code Editor**: Monaco Editor (Visual Studio Code-based)
+- **Diagramming Tool**: MermaidJS
 
-```bash
-npx create-liveblocks-app@latest --example nextjs-yjs-monaco --vercel
-```
+## ✨ Features
 
-This will download the example and ask permission to open your browser, enabling
-you to deploy to Vercel.
+### Interactive Learning Environment
 
-</details>
+Collaborate, share, and learn together in realtime.
 
-### Develop on CodeSandbox
+### Monaco Editor Integration
+Enjoy a familiar coding experience with the Monaco Editor. Key features include:
+- **Undo/Redo**: Standard keyboard shortcuts (Cmd+Z for undo, Ctrl+D for duplicate lines)
+- **Ease of Use**: An intuitive interface that mirrors Visual Studio Code
 
-<details><summary>Read more</summary>
+### Mermaid Live Preview
+As you write your MermaidJS syntax, watch your diagrams come to life:
+- **Real-time Visualization**: Immediate preview next to your code
+- **Error Handling**: The app continues to show the last valid diagram with an indicator for syntax errors, enhancing the learning experience
 
-<p></p>
+## Future Improvements
 
-After forking
-[this example](https://codesandbox.io/s/github/liveblocks/liveblocks/tree/main/examples/nextjs-yjs-monaco)
-on CodeSandbox, create the `LIVEBLOCKS_SECRET_KEY` environment variable as a
-[secret](https://codesandbox.io/docs/secrets).
+- Enhanced Responsive Design: Improve the layout for mobile users, ensuring a seamless experience across all devices
+- User Authentication: Allow fishie captains to create their own private schools.
+- Dynamic work areas: Introduce the ability to add multiple editors and diagram previews concurrently, facilitating complex projects and collaborative learning
 
-</details>
+## Resources
+
+For more resources, check out [this padlet](https://padlet.com/senchatea/mermaid-3l2jbgazxyifdm57)
