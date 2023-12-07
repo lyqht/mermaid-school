@@ -1,4 +1,7 @@
-# Mermaid School
+<div align='center'>
+    <img src="public/static/mermaid_school.webp" width="120" />
+    <h1>Mermaid School</h1>
+</div>
 
 Welcome fishies! With this app, you will learn to dive into the ocean of diagrams with Mermaid. Swim alongside fellow learners and navigate the currents of diagramming together! 🌊
 
