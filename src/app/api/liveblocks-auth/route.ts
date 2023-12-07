@@ -1,5 +1,6 @@
 import { Liveblocks } from "@liveblocks/node";
 import { NextRequest } from "next/server";
+import { faker } from "@faker-js/faker";
 
 // Authenticating your Liveblocks application
 // https://liveblocks.io/docs/rooms/authentication/access-token-permissions/nextjs
@@ -10,14 +11,36 @@ const liveblocks = new Liveblocks({
   secret: API_KEY!,
 });
 
-export async function POST(request: NextRequest) {
-  // Get the current user's unique id from your database
-  const userId = Math.floor(Math.random() * 10) % USER_INFO.length;
+type UserInfo = {
+  name: string;
+  picture: string;
+  color: string;
+}
 
-  // Create a session for the current user
-  // userInfo is made available in Liveblocks presence hooks, e.g. useOthers
+export async function POST(request: NextRequest) {
+  let userId: string;
+  let userInfo: UserInfo
+  const cookies = request.headers.get("cookie");
+  const userIdCookie = cookies && cookies.split("; ").find(row => row.startsWith("userId="));
+
+  if (userIdCookie) {
+    const decodedCookie = decodeURIComponent(userIdCookie.split("=")[1])
+    const separatorIndex = decodedCookie.indexOf(':');
+    
+    userId = decodedCookie.substring(0, separatorIndex);
+    userInfo = decodedCookie.substring(separatorIndex + 1) ? JSON.parse(decodedCookie.substring(separatorIndex + 1)) : createUserInfo();
+   } else {
+    userId = "user-" + Math.random().toString(36).substr(2, 9);
+    userInfo = createUserInfo();
+  }
+
+  const cookieValue = `${userId}:${JSON.stringify(userInfo)}`;
+  const expiryDate = new Date();
+  expiryDate.setFullYear(expiryDate.getFullYear() + 1); // 1 year from now
+  const cookieHeader = `userId=${encodeURIComponent(cookieValue)}; Expires=${expiryDate.toUTCString()}; Path=/; HttpOnly`;
+
   const session = liveblocks.prepareSession(`user-${userId}`, {
-    userInfo: USER_INFO[userId],
+    userInfo,
   });
 
   // Give the user access to the room
@@ -26,48 +49,16 @@ export async function POST(request: NextRequest) {
 
   // Authorize the user and return the result
   const { body, status } = await session.authorize();
-  return new Response(body, { status });
+  return new Response(body, {
+    status,
+    headers: {
+      "Set-Cookie": cookieHeader,
+    },
+  });
 }
 
-const USER_INFO = [
-  {
-    name: "Charlie Layne",
-    color: "#D583F0",
-    picture: "https://liveblocks.io/avatars/avatar-1.png",
-  },
-  {
-    name: "Mislav Abha",
-    color: "#F08385",
-    picture: "https://liveblocks.io/avatars/avatar-2.png",
-  },
-  {
-    name: "Tatum Paolo",
-    color: "#F0D885",
-    picture: "https://liveblocks.io/avatars/avatar-3.png",
-  },
-  {
-    name: "Anjali Wanda",
-    color: "#85EED6",
-    picture: "https://liveblocks.io/avatars/avatar-4.png",
-  },
-  {
-    name: "Jody Hekla",
-    color: "#85BBF0",
-    picture: "https://liveblocks.io/avatars/avatar-5.png",
-  },
-  {
-    name: "Emil Joyce",
-    color: "#8594F0",
-    picture: "https://liveblocks.io/avatars/avatar-6.png",
-  },
-  {
-    name: "Jory Quispe",
-    color: "#85DBF0",
-    picture: "https://liveblocks.io/avatars/avatar-7.png",
-  },
-  {
-    name: "Quinn Elton",
-    color: "#87EE85",
-    picture: "https://liveblocks.io/avatars/avatar-8.png",
-  },
-];
+const createUserInfo = () => ({
+  name: faker.animal.fish(),
+  color: faker.internet.color(),
+  picture: faker.image.urlLoremFlickr({ category: 'animals', width: 80, height: 80 }),
+});
